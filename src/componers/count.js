@@ -1,36 +1,17 @@
-import React, { Component } from 'react'
-
+import React, { Component } from "react";
+import styles from "./countStyle.module.css"
 export default class Count extends Component {
-state={
-    count:1
+  
+  render() {
+    const { count, handleIncrement, handleDecrement } = this.props;
+    return (
+      <div className={styles.blok}>
+        <button onClick={handleDecrement}>-</button>
+        <div className={styles.count}> {count}</div>
+        
+        <button onClick={handleIncrement}>+</button>
+      </div>
+    );
+  }
 }
-handleCount = ()=>{
-    this.setState({
-        count: this.count-1
-    })
-}
-
-handleCounts = ()=>{
-    this.setState({
-        count: this.count+1
-    })
-}
-
-
-
-    render() {
-       const {count}= this.state
-        return (
-            <div>
-              <button onClick={this.handleCount}>-</button>
-
-             {count}
-
-              <button 
-              onClick={
-                this.handleCounts
-              }>+</button>  
-            </div>
-        )
-    }
-}
+ 

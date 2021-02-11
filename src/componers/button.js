@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-
+import styles from "./buttonrStyle.module.css"
 
 export default class Button extends Component {
  
  state={
- ind : [],
+   ind :[],
+
  buttonasArray:[],
  col : false
  }
@@ -13,24 +14,25 @@ export default class Button extends Component {
    const temp = Array(100).fill(1,1).map((g,index)=>{
      return {
        value:index,
-       color:"red",
+       color:"",
      }
    });
    this.setState({buttonasArray:temp});
  }
   handleClick = (index)=> () => {
-    const {ind,buttonasArray}=this.state;
-    buttonasArray[index].color="green";
-    this.setState([...ind,index]);
-
+   
+   this.props.addIndex(index)
+   
  
   }
   render() {
     const {buttonasArray}=this.state;
     return (
-      <div >
+      <div  className={styles.butt} >
         {buttonasArray.map((i, index) => {
-          return <button style={{color:i.color}} key={index} onClick={this.handleClick(index)}>{i.value}</button>;
+          return <button style={{color:i.color}} key={index} onClick={this.handleClick(index)} 
+          className={styles.but}
+          >{i.value}</button>;
         })}
       </div>
     );

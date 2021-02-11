@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
-
-import Button from './componers/button';
-import Count from './componers/count';
+import Constuctr from './componers/contener'
 
 export default class App extends Component {
   render() {
     return (
       <div>
-       
-       <Button />
-       <Count />
+        <Constuctr />
       </div>
     )
   }
