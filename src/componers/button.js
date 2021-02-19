@@ -5,16 +5,18 @@ export default class Button extends Component {
  
  state={
    ind :[],
+   activite :false,
 
  buttonasArray:[],
- col : false
+  col : {},
+color:"red",
  }
  
  componentDidMount(){
    const temp = Array(100).fill(1,1).map((g,index)=>{
      return {
        value:index,
-       color:"",
+      
      }
    });
    this.setState({buttonasArray:temp});
@@ -22,16 +24,28 @@ export default class Button extends Component {
   handleClick = (index)=> () => {
    
    this.props.addIndex(index)
-   
+   this.setState({
+     col: {...this.state.col, [index]: !this.state.col[index] }
+        //  activite : !this.state.activite
+  });
+
  
   }
+  getIndexColor = (i) => {
+    if(this.state.col[i]){
+      return "green"
+    }
+    return 'red'
+  }
   render() {
-    const {buttonasArray}=this.state;
+    
+    const {buttonasArray, }=this.state;
+   
     return (
       <div  className={styles.butt} >
         {buttonasArray.map((i, index) => {
-          return <button style={{color:i.color}} key={index} onClick={this.handleClick(index)} 
-          className={styles.but}
+          return <button  className={`${styles.colors}`} style={{background: this.getIndexColor(index)}} key={index} onClick={this.handleClick(index)} 
+           className={styles.but}
           >{i.value}</button>;
         })}
       </div>
